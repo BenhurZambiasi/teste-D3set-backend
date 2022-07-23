@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+//criar migration: yarn prisma migrate dev
+
+model Pessoa{
+  id String @id @default(uuid())
+  name String
+  data_nascimento DateTime
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  @@map("pessoa")
+  pessoa_telefone PessoaTelefone[]
+}
+
+model PessoaTelefone{
+  id String @id @default(uuid())
+  numero_telefone String @unique
+  pessoa Pessoa @relation(fields:[pessoa_id],references:[id])
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  @@map("pessoa_telefone")
+  pessoa_id String
+}
+
+
+

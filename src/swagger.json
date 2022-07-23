@@ -1,0 +1,118 @@
+{
+  "openapi":"3.0.0",
+  "info":{
+    "title":"Api Teste D3SET",
+    "description":"Api para cadastro de pessoas e relação com números de telefone",
+    "contact":{
+      "email":"benhur_zambiasi@hotmail.com"
+    },
+    "version":"1.0.0"
+    
+    },
+    "servers":[
+      {
+        "url":"http://localhost:3333",
+        "description":"Api desenvolvimento"
+      }
+    ],
+    "paths":{
+      "/user":{
+        "post":{
+          "sumary":"Criação de pessoa",
+          "tags":["Pessoa"],
+          "requestBody":{
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/Pessoa"
+                }
+              }
+            }
+          },
+          "responses":{}
+        },
+        "get":{
+          "sumary":"Busca uma pessoa por id",
+          "tags":["Pessoa"],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"query",
+              "required":"true"
+            }
+          ],
+          "responses":{}      
+        },
+        "put":{
+          "sumary":"Update de pessoa",
+          "tags":["Pessoa"],
+          "parameters":[
+            {
+            "name":"id",
+            "in":"query",
+            "required":"true"
+            }
+            ],
+          "requestBody":{
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref":"#/components/schemas/Pessoa"
+                }
+              }
+            }
+          },
+          "responses":{}
+        },
+        "delete":{
+          "sumary":"Exclui uma pessoa por id",
+          "tags":["Pessoa"],
+          "parameters":[
+            {
+              "name":"id",
+              "in":"query",
+              "required":"true"
+            }
+          ],
+          "responses":{}      
+        }
+      },
+      "/users":{
+        "get":{
+          "sumary":"Lista todas as pessoas",
+          "tags":["Pessoa"],
+          "responses":{}      
+        }
+      }
+    },
+    "components":{
+      "schemas":{
+        "Pessoa":{
+          "type": "object",
+          "properties":{
+            "name":{
+              "type": "string"
+            },
+            "data_nascimento":{
+              "format": "date-time",
+              "type": "string"
+            },
+            "numbers":{
+              "type": "array",
+              "items": {
+               "type":"string"
+              }
+             
+            }
+          }
+        }
+      },
+      "securitySchemes":{
+        "bearerAuth":{
+          "type": "http",
+          "scheme":"bearer",
+          "bearerFormat":"JWT"
+        }
+      }
+    }
+}

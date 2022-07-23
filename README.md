@@ -37,3 +37,5 @@ yarn dev
 ## Documentação
 
 - http://localhost:3333/api-docs/
+
+- https://teste-d3set-backend.herokuapp.com/api-docs/
